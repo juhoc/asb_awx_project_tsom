@@ -1,7 +1,7 @@
 - name: Vaidar proceso TSOM IServer
   become: yes
   become_method: sudo
-  shell: ps -eo args | grep -qi pronto | grep -v grep && echo "El IServer en el quipo {{ ansible_hostname }} esta: ACTIVO" || echo "El IServer en el quipo {{ ansible_hostname }} esta: INACTIVO"
+  shell: ps -eo args | grep -qi pronto | grep -v grep && echo "El IServer en el quipo "{{ ansible_hostname }}" esta: ACTIVO" || echo "El IServer en el quipo "{{ ansible_hostname }}" esta: INACTIVO"
   register: statustsomis
 
 - name: Resultado de la validacion del proceso TSOM IServer
