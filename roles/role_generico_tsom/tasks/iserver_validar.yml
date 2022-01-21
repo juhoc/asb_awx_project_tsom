@@ -2,9 +2,9 @@
   become: yes
   become_method: sudo
   shell: ps -eo args | grep -qi pronto && echo "IServer ACTIVO" || echo "IServer INACTIVO"
-  regiter
-  
+  register: statustsomis
+
 - name: Resultado de la validacion del proceso TSOM IServer
   debug:
     msg:
-       - "{{ statusrepo.stdout }}"
+       - "{{ statustsomis.stdout }}"
