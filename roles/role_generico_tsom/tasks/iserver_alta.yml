@@ -1,31 +1,10 @@
-- name: Alta proceso TSO REPO
+- name: Alta proceso TSOM IServer
   become: yes
   become_method: sudo
-  shell: nohup /usr/bin/sh /bmc/TSO/REPO/bin/server.sh start
+  shell: /opt/BMC/TSIMAgent/pw/pronto/bin/startremotepw
+  register: statustsomis
 
-- name: Alta proceso TSO CDP
-  become: yes
-  become_method: sudo
-  shell: nohup /usr/bin/sh /bmc/TSO/CDP/bin/server.sh start
-
-- name: Vaidar proceso TSO REPO
-  become: yes
-  become_method: sudo
-  shell: /usr/bin/sh /bmc/TSO/REPO/bin/server.sh status
-  register: statusrepo
-
-- name: Validar proceso TSO CDP
-  become: yes
-  become_method: sudo
-  shell: /usr/bin/sh /bmc/TSO/CDP/bin/server.sh status
-  register: statuscdp
-
-- name: Resultado de la alta del proceso TSO REPO
+- name: Resultado de la alta del proceso TSO IServer
   debug:
     msg:
-       - "{{ statusrepo.stdout }}"
-
-- name: Resultado de la alta del proceso TSO CDP
-  debug:
-    msg:
-       - "{{ statuscdp.stdout }}"
+       - "{{ statustsomis.stdout }}"
