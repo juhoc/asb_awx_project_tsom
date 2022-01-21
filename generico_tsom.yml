@@ -1,0 +1,9 @@
+---
+- name: PlayBook Maestro de TrueSight Orchestrator
+  hosts: all
+  vars:
+     - asb_componentes: "Seleccione el componente"
+     - asb_accion: "Seleccione una opcion"
+  tasks:
+    - include_role:
+        name: role_generico_tsom

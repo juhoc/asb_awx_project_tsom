@@ -1,0 +1,21 @@
+- name: Vaidar proceso TSO REPO
+  become: yes
+  become_method: sudo
+  shell: /usr/bin/sh /bmc/TSO/REPO/bin/server.sh status
+  register: statusrepo
+
+- name: Validar proceso TSO CDP
+  become: yes
+  become_method: sudo
+  shell: /usr/bin/sh /bmc/TSO/CDP/bin/server.sh status
+  register: statuscdp
+
+- name: Resultado de la validacion del proceso TSO REPO
+  debug:
+    msg:
+       - "{{ statusrepo.stdout }}"
+
+- name: Resultado de la validacion del proceso TSO CDP
+  debug:
+    msg:
+       - "{{ statuscdp.stdout }}"
