@@ -1,2 +1,2 @@
 - name: Cargando PlayBook para intervenir TrueSight Operation Management
-  include_tasks: "{{ asb_componente_asb_accion }}.yml"
+  include_tasks: "{{ asb_componente }}_{{ asb_accion }}.yml"
