@@ -1,29 +1,15 @@
-- name: Reiniciar proceso TSO REPO
+- name: Baja proceso TSOM IServer
   become: yes
   become_method: sudo
-  shell: nohup /usr/bin/sh /bmc/TSO/REPO/bin/server.sh restart
-
-- name: Reiniciar proceso TSO CDP
+  shell: /opt/BMC/TSIMAgent/pw/pronto/bin/stopremotepw
+  
+- name: Alta proceso TSOM IServer
   become: yes
   become_method: sudo
-  shell: nohup /usr/bin/sh /bmc/TSO/CDP/bin/server.sh restart
+  shell: /opt/BMC/TSIMAgent/pw/pronto/bin/startremotepw
+  register: statustsomis
 
-- name: Vaidar proceso TSO REPO
-  become: yes
-  become_method: sudo
-  shell: /usr/bin/sh /bmc/TSO/REPO/bin/server.sh status
-  register: statusrepo
-
-- name: Validar proceso TSO CDP
-  shell: /usr/bin/sh /bmc/TSO/CDP/bin/server.sh status
-  register: statuscdp
-
-- name: Resultado del reinicio del proceso TSO REPO
+- name: Resultado de la reinicio del proceso TSO IServer
   debug:
     msg:
-       - "{{ statusrepo.stdout }}"
-
-- name: Resultado del reinicio del proceso TSO CDP
-  debug:
-    msg:
-       - "{{ statuscdp.stdout }}"
+       - "{{ statustsomis.stdout }}"
